@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone_number');
             $table->string('address');
-            $table->string('id_card_pict_path');
-            $table->string('house_pict_path');
+            $table->string('id_card_pict_path')->nullable();
+            $table->string('house_pict_path')->nullable();
             $table->boolean('verified');
             $table->timestamps();
 

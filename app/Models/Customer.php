@@ -18,6 +18,16 @@ class Customer extends Model
         'name',
         'phone_number',
         'address',
+        'verified',
+        'package_id',
+    ];
+
+        /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
         'id_card_pict_path',
         'house_pict_path',
     ];
