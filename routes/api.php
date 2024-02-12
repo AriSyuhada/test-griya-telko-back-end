@@ -42,6 +42,7 @@ Route::middleware(['auth:sanctum', 'roleCheck:admin'])->group(function () {
     // Auth Controller
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::get('/users', [AuthController::class, 'index']);
+    Route::delete('/users/{id}', [AuthController::class, 'destroy']);
 
     // Package Controller
     Route::post('/packages', [PackageController::class, 'store']);
@@ -54,9 +55,6 @@ Route::middleware(['auth:sanctum', 'roleCheck:admin'])->group(function () {
 
 // Sales Role
 Route::middleware(['auth:sanctum', 'roleCheck:sales'])->group(function () {
-    // Auth Controller
-    Route::put('/users/{id}', [AuthController::class, 'update']);
-
     // Customer Controller
     Route::post('/customers', [CustomerController::class, 'store']);
     Route::put('/customers/{id}', [CustomerController::class, 'update']);

@@ -26,6 +26,14 @@ class AuthController extends Controller
         return response()->json($users, Response::HTTP_OK);
     }
 
+    public function destroy(Request $request, $id) {
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return response()->json(['messages' => ['User data where id = ' . $id . ' id deleted']], Response::HTTP_NO_CONTENT);
+    }
+
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'username' => 'required|unique:users',
@@ -48,8 +56,11 @@ class AuthController extends Controller
         $token = $user->createToken('my-token')->plainTextToken;
 
         return response()->json([
+            'username' => $user->username,
+            'email' => $user->email,
+            'role' => $user->role,
             'token' => $token,
-            'Type' => 'Bearer'
+            'type' => 'Bearer',
         ], Response::HTTP_CREATED);
     }
 
@@ -72,9 +83,11 @@ class AuthController extends Controller
         $token = $user->createToken('my-token')->plainTextToken;
 
         return response()->json([
+            'username' => $user->username,
+            'email' => $user->email,
+            'role' => $user->role,
             'token' => $token,
-            'Type' => 'Bearer',
-            'role' => $user->role
+            'type' => 'Bearer',
         ], Response::HTTP_OK);
     }
 }

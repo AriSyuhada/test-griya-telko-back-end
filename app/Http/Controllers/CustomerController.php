@@ -129,8 +129,8 @@ class CustomerController extends Controller
 
         $filePath = $customer[$file . '_pict_path'];
 
-        return asset($filePath);
+        // return asset($filePath);
 
-        // return response()->file(public_path($filePath));
+        return response()->file(public_path($filePath));
     }
 }
